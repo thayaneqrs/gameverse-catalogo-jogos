@@ -1,0 +1,109 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVerse | Catálogo de Jogos</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
+</head>
+<body>
+
+    <header class="cabecalho">
+        <h1>🎮 GameVerse</h1>
+        <p>Explore universos, descubra histórias e encontre seu próximo jogo favorito.</p>
+    </header>
+
+    <main class="container">
+
+        <section class="filtros">
+            <h2>Encontre seu jogo</h2>
+
+            <form method="GET">
+                <input
+                    type="text"
+                    name="pesquisa"
+                    placeholder="Pesquisar jogo..."
+                    value="{{ pesquisa }}"
+                >
+
+                <select name="desenvolvedora">
+                    <option value="">Todas as desenvolvedoras</option>
+                    {% for desenvolvedora in desenvolvedoras %}
+                        <option value="{{ desenvolvedora.id }}"
+                            {% if desenvolvedora_selecionada == desenvolvedora.id|stringformat:"s" %}selected{% endif %}>
+                            {{ desenvolvedora.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <select name="plataforma">
+                    <option value="">Todas as plataformas</option>
+                    {% for plataforma in plataformas %}
+                        <option value="{{ plataforma.id }}"
+                            {% if plataforma_selecionada == plataforma.id|stringformat:"s" %}selected{% endif %}>
+                            {{ plataforma.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Buscar</button>
+                <a href="{% url 'listar_jogos' %}" class="limpar">Limpar filtros</a>
+            </form>
+        </section>
+
+        <section class="catalogo">
+            <h2>Catálogo de jogos</h2>
+
+            <div class="grade-jogos">
+                {% for jogo in jogos %}
+                    <article class="card-jogo">
+                        <span class="ano">{{ jogo.ano_lancamento }}</span>
+                        <h3>{{ jogo.nome }}</h3>
+                        <p>{{ jogo.descricao }}</p>
+
+                        <div class="informacoes">
+                            <span>🎮 {{ jogo.plataforma.nome }}</span>
+                            <span>🏢 {{ jogo.desenvolvedora.nome }}</span>
+                            <span>🔞 {{ jogo.classificacao }}</span>
+                        </div>
+                    </article>
+                {% empty %}
+                    <p class="sem-resultados">
+                        Nenhum jogo encontrado. Tente outra pesquisa!
+                    </p>
+                {% endfor %}
+            </div>
+        </section>
+
+        {% if jogos.paginator.num_pages > 1 %}
+        <nav class="paginacao">
+
+            {% if jogos.has_previous %}
+                <a href="?{% if parametros_paginacao %}{{ parametros_paginacao }}&{% endif %}page={{ jogos.previous_page_number }}">
+                    Anterior
+                </a>
+            {% endif %}
+
+            <span>
+                Página {{ jogos.number }} de {{ jogos.paginator.num_pages }}
+            </span>
+
+            {% if jogos.has_next %}
+                <a href="?{% if parametros_paginacao %}{{ parametros_paginacao }}&{% endif %}page={{ jogos.next_page_number }}">
+                    Próxima
+                </a>
+            {% endif %}
+
+        </nav>
+        {% endif %}
+
+    </main>
+
+    <footer>
+        <p>GameVerse © 2026 — Seu universo de jogos começa aqui.</p>
+    </footer>
+
+</body>
+</html>
