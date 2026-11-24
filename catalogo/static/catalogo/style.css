@@ -1,0 +1,134 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #100d1c;
+    color: #f5f0ff;
+}
+
+.cabecalho {
+    text-align: center;
+    padding: 55px 20px;
+    background: linear-gradient(135deg, #32145c, #7028a8);
+}
+
+.cabecalho h1 {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.cabecalho p {
+    color: #e5d5f7;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.filtros, .catalogo {
+    margin-bottom: 40px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #c99aff;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+input, select {
+    flex: 1;
+    min-width: 180px;
+    padding: 13px;
+    border: 1px solid #68458e;
+    border-radius: 8px;
+    background: #211a32;
+    color: white;
+}
+
+button, .limpar, .paginacao a {
+    padding: 13px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #913ee0;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover, .limpar:hover, .paginacao a:hover {
+    background: #ad68ef;
+}
+
+.grade-jogos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card-jogo {
+    background: #211a32;
+    padding: 22px;
+    border: 1px solid #493263;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.card-jogo:hover {
+    transform: translateY(-5px);
+    border-color: #a45be8;
+}
+
+.card-jogo h3 {
+    margin: 12px 0;
+    color: #d9b6ff;
+}
+
+.card-jogo p {
+    color: #c5bad4;
+    line-height: 1.5;
+}
+
+.ano {
+    color: #b78be8;
+    font-size: 13px;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #cbb9df;
+}
+
+.sem-resultados {
+    color: #c5bad4;
+}
+
+.paginacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 35px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #211a32;
+    color: #bcaaca;
+}
