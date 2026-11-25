@@ -74,3 +74,5 @@ O projeto possui três modelos principais:
 ## Demonstração
 
 A captura de tela da aplicação será apresentada nesta seção.
+
+![Tela inicial do GameVerse](imagens/gameverse.png)
